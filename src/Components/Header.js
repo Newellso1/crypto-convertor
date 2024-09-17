@@ -1,7 +1,9 @@
 export default function Header() {
   return (
-    <div className="bg-slate-200 text-center p-4">
-      <h1 className="text-2xl">Crypto-Converter</h1>
+    <div className="header bg-clip-text text-transparent bg-gradient-to-tr from-green-500 to-red-500 p-10 text-center">
+      <h1 className="text-8xl">
+        Crypto-<span className=" font-bold italic text-8xl">Converter</span>
+      </h1>
     </div>
   );
 }

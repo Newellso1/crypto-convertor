@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+.header {
+  font-family: bebas neue;
+}
+
+.crypto-list {
+  box-shadow: 0 2em 4em 0.2em rgb(99, 120, 148);
+}
+
+.crypto-list > div::-webkit-scrollbar {
+  display: none;
+}
+
+.crypto-list > div {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

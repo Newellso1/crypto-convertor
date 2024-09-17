@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import CryptoInfo from "./CryptoInfo";
 import CryptoListFooter from "./CryptoListFooter";
 
-export default function CryptoList() {
+export default function CryptoList({ setSelectedCoin }) {
   const [cryptoList, setCryptoList] = useState([]);
   const [sortList, setSortList] = useState("rank");
+  const [topResults, setTopResults] = useState("10");
 
   useEffect(function () {
     async function getData() {
@@ -28,18 +29,17 @@ export default function CryptoList() {
     return 0;
   });
 
-  const first50 = sortedList.slice(0, 50);
+  const topList = sortedList.slice(0, topResults);
 
   return (
-    <div className="border-2">
+    <div className="crypto-list rounded-md bg-slate-300 bg-opacity-70 p-4">
       <div className=" p-2 max-h-96 w-[600px] overflow-y-scroll">
-        <h1 className="text-center">CryptoList</h1>
-        <ul>
-          {first50.map((coin) => (
-            <li key={coin.id}>
+        <ul className="scroll-hide">
+          {topList.map((coin) => (
+            <li key={coin.id} onClick={(e) => setSelectedCoin(coin.symbol)}>
               <CryptoInfo
                 name={coin.name}
-                price={coin.quotes.USD.price}
+                price={Number(coin.quotes.USD.price)}
                 symbol={coin.symbol}
                 percentageChange={coin.quotes.USD.percent_change_24h}
               />
@@ -47,7 +47,14 @@ export default function CryptoList() {
           ))}
         </ul>
       </div>
-      <CryptoListFooter sortList={sortList} setSortList={setSortList} />
+      <div className="pt-4">
+        <CryptoListFooter
+          sortList={sortList}
+          setSortList={setSortList}
+          topResults={topResults}
+          setTopResults={setTopResults}
+        />
+      </div>
     </div>
   );
 }
