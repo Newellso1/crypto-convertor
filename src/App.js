@@ -4,7 +4,7 @@ import Header from "./Components/Header";
 import SelectedInfo from "./Components/SelectedInfo";
 
 function App() {
-  const [selectedCoin, setSelectedCoin] = useState("SHIB");
+  const [selectedCoin, setSelectedCoin] = useState("BTC");
 
   return (
     <div className="App flex flex-col gap-5 bg-gradient-to-tr from-slate-900 to-slate-700 min-h-dvh">
