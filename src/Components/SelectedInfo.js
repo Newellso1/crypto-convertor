@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import CryptoChart from "./CryptoChart";
 
 export default function SelectedInfo({ selectedCoin }) {
   const [showInfo, setShowInfo] = useState(null);
@@ -35,11 +36,14 @@ export default function SelectedInfo({ selectedCoin }) {
         <>
           {" "}
           <h2 className="header text-3xl">{showInfo.Data.NAME}</h2>
-          <img
-            src={showInfo.Data.LOGO_URL}
-            alt={`Logo for ${showInfo.Data.NAME}`}
-            className="w-20 rounded-lg"
-          />
+          <div className="flex gap-4 items-center ">
+            <img
+              src={showInfo.Data.LOGO_URL}
+              alt={`Logo for ${showInfo.Data.NAME}`}
+              className=" size-32 rounded-lg aspect-auto"
+            />
+            <CryptoChart selectedCoin={selectedCoin} />
+          </div>
           <p>
             {showInfo.Data.ASSET_DESCRIPTION_SNIPPET
               ? showInfo.Data.ASSET_DESCRIPTION_SNIPPET
