@@ -16,7 +16,7 @@ export default function SelectedInfo({ selectedCoin }) {
         );
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000);
+        }, 2000);
 
         const data = await res.json();
         setShowInfo(data);

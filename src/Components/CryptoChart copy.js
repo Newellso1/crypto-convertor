@@ -18,7 +18,7 @@ export default function CryptoChart({ selectedCoin }) {
     function () {
       async function getChartData() {
         const res = await fetch(
-          `https://min-api.cryptocompare.com/data/histoday?fsym=${selectedCoin}&tsym=USD&limit=10&allData=true`
+          `https://min-api.cryptocompare.com/data/histoday?fsym=${selectedCoin}&tsym=USD&limit=30&aggregate=3&e=Cexio`
         );
         const historicalData = await res.json();
         if (!historicalData.Data || historicalData.Response === "Error") {
@@ -82,19 +82,8 @@ export default function CryptoChart({ selectedCoin }) {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className={`${error ? " hidden" : ""} `}>
-        {chartData ? <Line data={chartData} options={options} /> : null}
-      </div>
-      <div
-        className={`flex justify-evenly text-sm w-full ${
-          error ? " hidden" : ""
-        } `}
-      >
-        <button>All</button>
-        <button>30 Days</button>
-        <button>24 hours</button>
-      </div>
+    <div className={`${error ? " hidden" : ""} `}>
+      {chartData ? <Line data={chartData} options={options} /> : null}
     </div>
   );
 }
