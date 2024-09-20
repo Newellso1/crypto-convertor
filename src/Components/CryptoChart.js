@@ -13,12 +13,21 @@ ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 export default function CryptoChart({ selectedCoin }) {
   const [chartData, setChartData] = useState(null);
   const [error, setError] = useState(false);
+  const [timeFrame, setTimeFrame] = useState(0);
+
+  const timeFrames = [
+    `histoday?fsym=${selectedCoin}&tsym=USD&limit=10&allData=true`,
+    `histoday?fsym=${selectedCoin}&tsym=USD&limit=24`,
+    `histohour?fsym=${selectedCoin}&tsym=USD&limit=10`,
+  ];
+
+  console.log(timeFrames);
 
   useEffect(
     function () {
       async function getChartData() {
         const res = await fetch(
-          `https://min-api.cryptocompare.com/data/histoday?fsym=${selectedCoin}&tsym=USD&limit=10&allData=true`
+          `https://min-api.cryptocompare.com/data/${timeFrames[timeFrame]}`
         );
         const historicalData = await res.json();
         if (!historicalData.Data || historicalData.Response === "Error") {
@@ -46,7 +55,7 @@ export default function CryptoChart({ selectedCoin }) {
       }
       getChartData();
     },
-    [selectedCoin]
+    [selectedCoin, timeFrame]
   );
 
   const options = {
@@ -91,9 +100,33 @@ export default function CryptoChart({ selectedCoin }) {
           error ? " hidden" : ""
         } `}
       >
-        <button>All</button>
-        <button>30 Days</button>
-        <button>24 hours</button>
+        <button
+          value={0}
+          onClick={(e) => setTimeFrame(e.target.value)}
+          className={`transition-all w-1/3 ${
+            timeFrame === "0" ? `bg-slate-200` : ``
+          }`}
+        >
+          All
+        </button>
+        <button
+          value={1}
+          onClick={(e) => setTimeFrame(e.target.value)}
+          className={`transition-all w-1/3 ${
+            timeFrame === "1" ? `bg-slate-200` : ``
+          }`}
+        >
+          30 Days
+        </button>
+        <button
+          value={2}
+          onClick={(e) => setTimeFrame(e.target.value)}
+          className={`transition-all w-1/3 ${
+            timeFrame === "2" ? `bg-slate-200` : ``
+          }`}
+        >
+          24 hours
+        </button>
       </div>
     </div>
   );

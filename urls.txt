@@ -1,4 +1,4 @@
-histoday?fsym=BTC&tsym=USD&limit=10&allData=true - All data
+https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=10&allData=true - All data
 
 https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=24 - Day
 
