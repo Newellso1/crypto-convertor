@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import CryptoChart from "./CryptoChart";
+import { RedditLogo, DiscordLogo, Desktop } from "@phosphor-icons/react";
 
 export default function SelectedInfo({ selectedCoin }) {
   const [showInfo, setShowInfo] = useState(null);
@@ -35,7 +36,51 @@ export default function SelectedInfo({ selectedCoin }) {
       ) : (
         <>
           {" "}
-          <h2 className="header text-3xl">{showInfo.Data.NAME}</h2>
+          <div className="flex w-full justify-between items-center px-4">
+            <div>
+              <h2 className="header text-3xl">{showInfo.Data.NAME}</h2>
+            </div>
+            <div className="flex gap-2">
+              <a
+                href={showInfo.Data.WEBSITE_URL}
+                target="blank"
+                className={`${showInfo.Data.WEBSITE_URL ? "" : "disabled"}`}
+              >
+                <Desktop
+                  size={30}
+                  className="hover:text-blue-500 transition-all"
+                />
+              </a>
+              <a
+                href={
+                  showInfo.Data.DISCORD_SERVERS
+                    ? showInfo.Data.DISCORD_SERVERS[0].URL
+                    : ""
+                }
+                target="blank"
+                className={`${showInfo.Data.DISCORD_SERVERS ? "" : "disabled"}`}
+              >
+                <DiscordLogo
+                  size={30}
+                  className="hover:text-indigo-700 transition-all"
+                />
+              </a>
+              <a
+                href={
+                  showInfo.Data.SUBREDDITS
+                    ? showInfo.Data.SUBREDDITS[0].URL
+                    : ""
+                }
+                target="blank"
+                className={`${showInfo.Data.SUBREDDITS ? "" : "disabled"}`}
+              >
+                <RedditLogo
+                  size={30}
+                  className="hover:text-orange-600 transition-all"
+                />
+              </a>
+            </div>
+          </div>
           <div className="flex gap-4 items-center ">
             <img
               src={showInfo.Data.LOGO_URL}
