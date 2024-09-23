@@ -70,7 +70,7 @@ export default function CryptoList({ setSelectedCoin, selectedCoin }) {
           </ul>
         )}
       </div>
-      <div className="">
+      <div className="pt-4">
         <CryptoListFooter
           sortList={sortList}
           setSortList={setSortList}
