@@ -21,7 +21,7 @@ export default function CryptoChart({ selectedCoin }) {
       `histoday?fsym=${selectedCoin}&tsym=USD&limit=24`,
       `histohour?fsym=${selectedCoin}&tsym=USD&limit=10`,
     ],
-    selectedCoin
+    [selectedCoin]
   );
 
   console.log(timeFrames);
