@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CryptoList from "./Components/CryptoList";
 import Header from "./Components/Header";
-import SelectedInfo from "./Components/SelectedInfo";
 
 function App() {
   const [selectedCoin, setSelectedCoin] = useState("BTC");
