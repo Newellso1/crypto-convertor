@@ -6,7 +6,7 @@ export default function CryptoListFooter({
   searchQuery,
 }) {
   return (
-    <div className=" flex flex-col gap-4 justify-center">
+    <div className=" flex flex-col gap-2 justify-center">
       <div className="flex justify-around">
         <button
           className={`border-2 px-5 py-1 rounded-md hover:bg-slate-300 transition-all ${

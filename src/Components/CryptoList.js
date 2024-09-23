@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import CryptoInfo from "./CryptoInfo";
 import CryptoListFooter from "./CryptoListFooter";
 import SearchBar from "./ListSearch";
+import SelectedInfo from "./SelectedInfo";
 
-export default function CryptoList({ setSelectedCoin }) {
+export default function CryptoList({ setSelectedCoin, selectedCoin }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [cryptoList, setCryptoList] = useState([]);
   const [sortList, setSortList] = useState("rank");
@@ -69,7 +70,7 @@ export default function CryptoList({ setSelectedCoin }) {
           </ul>
         )}
       </div>
-      <div className="pt-4">
+      <div className="">
         <CryptoListFooter
           sortList={sortList}
           setSortList={setSortList}
@@ -77,6 +78,9 @@ export default function CryptoList({ setSelectedCoin }) {
           setTopResults={setTopResults}
           searchQuery={searchQuery}
         />
+      </div>
+      <div className="pt-4">
+        <SelectedInfo selectedCoin={selectedCoin} />
       </div>
     </div>
   );

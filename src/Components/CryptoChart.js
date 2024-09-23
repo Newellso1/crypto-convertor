@@ -97,14 +97,14 @@ export default function CryptoChart({ selectedCoin }) {
       </div>
       <div
         className={`flex justify-evenly text-sm w-full ${
-          error ? " hidden" : ""
+          error || !chartData ? " hidden" : ""
         } `}
       >
         <button
           value={0}
           onClick={(e) => setTimeFrame(e.target.value)}
           className={`transition-all w-1/3 ${
-            timeFrame === "0" ? `bg-slate-200` : ``
+            timeFrame == 0 ? `bg-slate-300` : ``
           }`}
         >
           All
