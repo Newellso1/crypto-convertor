@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -15,11 +15,14 @@ export default function CryptoChart({ selectedCoin }) {
   const [error, setError] = useState(false);
   const [timeFrame, setTimeFrame] = useState(0);
 
-  const timeFrames = [
-    `histoday?fsym=${selectedCoin}&tsym=USD&limit=10&allData=true`,
-    `histoday?fsym=${selectedCoin}&tsym=USD&limit=24`,
-    `histohour?fsym=${selectedCoin}&tsym=USD&limit=10`,
-  ];
+  const timeFrames = useMemo(
+    () => [
+      `histoday?fsym=${selectedCoin}&tsym=USD&limit=10&allData=true`,
+      `histoday?fsym=${selectedCoin}&tsym=USD&limit=24`,
+      `histohour?fsym=${selectedCoin}&tsym=USD&limit=10`,
+    ],
+    selectedCoin
+  );
 
   console.log(timeFrames);
 
@@ -55,7 +58,7 @@ export default function CryptoChart({ selectedCoin }) {
       }
       getChartData();
     },
-    [selectedCoin, timeFrame]
+    [selectedCoin, timeFrame, timeFrames]
   );
 
   const options = {
@@ -102,27 +105,27 @@ export default function CryptoChart({ selectedCoin }) {
       >
         <button
           value={0}
-          onClick={(e) => setTimeFrame(e.target.value)}
+          onClick={(e) => setTimeFrame(Number(e.target.value))}
           className={`transition-all w-1/3 ${
-            timeFrame == 0 ? `bg-slate-300` : ``
+            timeFrame === 0 ? `bg-slate-200` : ``
           }`}
         >
           All
         </button>
         <button
           value={1}
-          onClick={(e) => setTimeFrame(e.target.value)}
+          onClick={(e) => setTimeFrame(Number(e.target.value))}
           className={`transition-all w-1/3 ${
-            timeFrame === "1" ? `bg-slate-200` : ``
+            timeFrame === 1 ? `bg-slate-200` : ``
           }`}
         >
           30 Days
         </button>
         <button
           value={2}
-          onClick={(e) => setTimeFrame(e.target.value)}
+          onClick={(e) => setTimeFrame(Number(e.target.value))}
           className={`transition-all w-1/3 ${
-            timeFrame === "2" ? `bg-slate-200` : ``
+            timeFrame === 2 ? `bg-slate-200` : ``
           }`}
         >
           24 hours
